@@ -1,0 +1,1036 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Scripts/Collectable.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://platformerArt_v4/png/key_green.png" type="Texture" id=3]
+[ext_resource path="res://platformerArt_v4/png/lock_green.png" type="Texture" id=4]
+[ext_resource path="res://Assets/blue_land.png" type="Texture" id=5]
+[ext_resource path="res://platformerArt_v4/png/coin_gold.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Ground.gd" type="Script" id=7]
+[ext_resource path="res://TileSets/FirstLevelDecoration.tres" type="TileSet" id=8]
+[ext_resource path="res://TileSets/FirstLevelGround.tres" type="TileSet" id=9]
+[ext_resource path="res://Scripts/Decoration.gd" type="Script" id=10]
+[ext_resource path="res://Sounds/Background/futuristic-rhythmic-game-ambience.wav" type="AudioStream" id=11]
+[ext_resource path="res://platformerArt_v4/png/spikes.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/GM.gd" type="Script" id=21]
+[ext_resource path="res://Scenes/Slime.tscn" type="PackedScene" id=24]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 35.0002, 17 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 35, 35 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( -30.4355, -32.8788, -30.4355, 35, 30.4346, 35, 30.4346, -32.8788 )
+
+[sub_resource type="CanvasItemMaterial" id=10]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 16 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 18.0278
+
+[sub_resource type="CanvasItemMaterial" id=9]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.197452, 0.280255, 0.369427, 0.503185, 0.789809, 0.821656, 0.847134 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.886275, 0.768627, 0.309804, 1, 0.886275, 0.768627, 0.309804, 1, 0.117647, 0.109804, 0.227451, 1, 0.117647, 0.109804, 0.227451, 1, 0.717647, 1, 0.929412, 1, 1, 1, 1, 1 )
+
+[sub_resource type="Environment" id=7]
+background_mode = 4
+glow_enabled = true
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/4 = true
+glow_intensity = 1.5
+glow_strength = 0.2
+glow_blend_mode = 1
+glow_hdr_threshold = 1.5
+glow_bicubic_upscale = true
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 254.568
+
+[node name="World" type="Node"]
+
+[node name="BG" type="Node2D" parent="."]
+position = Vector2( 864, 40 )
+
+[node name="blue_land" type="Sprite" parent="BG"]
+position = Vector2( 512, 88 )
+texture = ExtResource( 5 )
+
+[node name="blue_land2" type="Sprite" parent="BG"]
+position = Vector2( 1536, 88 )
+texture = ExtResource( 5 )
+
+[node name="blue_land4" type="Sprite" parent="BG"]
+position = Vector2( 2560, 88 )
+texture = ExtResource( 5 )
+
+[node name="blue_land5" type="Sprite" parent="BG"]
+position = Vector2( 3584, 88 )
+texture = ExtResource( 5 )
+
+[node name="blue_land6" type="Sprite" parent="BG"]
+position = Vector2( 4608, 88 )
+texture = ExtResource( 5 )
+
+[node name="blue_land7" type="Sprite" parent="BG"]
+position = Vector2( 5632, 87 )
+texture = ExtResource( 5 )
+
+[node name="blue_land8" type="Sprite" parent="BG"]
+position = Vector2( 6656, 88 )
+texture = ExtResource( 5 )
+
+[node name="blue_land9" type="Sprite" parent="BG"]
+position = Vector2( 7680, 88 )
+texture = ExtResource( 5 )
+
+[node name="blue_land10" type="Sprite" parent="BG"]
+position = Vector2( 8704, 88 )
+texture = ExtResource( 5 )
+
+[node name="blue_land3" type="Sprite" parent="BG"]
+position = Vector2( -512, 88 )
+texture = ExtResource( 5 )
+
+[node name="Decoration" type="TileMap" parent="BG"]
+position = Vector2( 0, 39 )
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -1703522, 20, 0, -1703500, 21, 0, -1637938, 19, 0, -1244786, 16, 0, -1244736, 17, 0, -1113692, 18, 0, -982625, 17, 0, -785963, 14, 0, -785959, 15, 0, -720434, 17, 0, -655055, 19, 0, -523955, 20, 0, -196331, 20, 0, -131058, 19, 0, -131018, 21, 0, -130822, 19, 0, -130712, 20, 0, -65325, 19, 0, -65286, 19, 0, 339, 2, 0, 343, 3, 0, 65692, 21, 0, 65867, 11, 0, 196572, 19, 0, 131255, 20, 0, 131394, 13, 0, 131410, 13, 0, 196704, 20, 0, 327758, 21, 0, 327971, 11, 0, 393347, 19, 0, 393447, 21, 0, 524281, 20, 0, 590175, 11, 0, 655633, 17, 0, 655638, 13, 0, 720949, 18, 0, 786491, 14, 0, 786495, 15, 0, 786792, 2, 0, 851998, 11, 0, 852229, 11, 0, 917548, 13, 0, 917564, 17, 0, 917697, 13, 0, 917707, 17, 0, 917756, 13, 0, 983219, 18, 0, 1048730, 15, 0, 1048734, 14, 0, 1114126, 11, 0, 1114298, 11, 0, 1114349, 16, 0, 1179809, 13, 0, 1310799, 3, 0, 1311128, 18, 0, 1311156, 18, 0, 1311165, 15, 0, 1311169, 14, 0, 1311173, 15, 0, 1441761, 11, 0, 1376329, 11, 0, 1376380, 4, 0, 1376391, 11, 0, 1376584, 16, 0, 1376647, 16, 0, 1376669, 16, 0, 1376697, 16, 0, 1376749, 16, 0, 1376762, 16, 0, 1507310, 13, 0, 1507321, 17, 0, 1441906, 13, 0, 1442112, 17, 0, 1442130, 17, 0, 1442160, 13, 0, 1442173, 17, 0, 1442192, 17, 0, 1442217, 17, 0, 1442281, 17, 0, 1442292, 17, 0, 1442306, 17, 0 )
+script = ExtResource( 10 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Ground" type="TileMap" parent="Area2D"]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 65, 65 )
+format = 1
+tile_data = PoolIntArray( -393112, 536870914, 0, -393111, 536870914, 0, -393110, 536870914, 0, -393109, 536870914, 0, -393108, 536870914, 0, -393107, 536870914, 0, -393106, 536870914, 0, -393088, 2, 0, -393087, 2, 0, -393086, 2, 0, -393085, 2, 0, -393084, 2, 0, -393083, 2, 0, -393082, 2, 0, -393081, 2, 0, -393080, 2, 0, -393079, 2, 0, -393078, 2, 0, -393077, 2, 0, -393076, 2, 0, -327576, 536870914, 0, -327575, 536870914, 0, -327574, 536870914, 0, -327573, 536870914, 0, -327572, 536870914, 0, -327571, 536870914, 0, -327570, 536870914, 0, -327552, 2, 0, -327551, 2, 0, -327550, 2, 0, -327549, 2, 0, -327548, 2, 0, -327547, 2, 0, -327546, 2, 0, -327545, 2, 0, -327544, 2, 0, -327543, 2, 0, -327542, 2, 0, -327541, 2, 0, -327540, 2, 0, -262040, 536870914, 0, -262039, 536870914, 0, -262038, 536870914, 0, -262037, 536870914, 0, -262036, 536870914, 0, -262035, 536870914, 0, -262034, 536870914, 0, -262014, 2, 0, -262013, 2, 0, -262012, 2, 0, -262011, 2, 0, -262010, 2, 0, -262009, 2, 0, -262008, 2, 0, -262007, 2, 0, -262006, 2, 0, -262005, 2, 0, -262004, 2, 0, -196504, 536870914, 0, -196503, 536870914, 0, -196502, 536870914, 0, -196501, 536870914, 0, -196500, 536870914, 0, -196499, 2, 0, -196498, 2, 0, -196497, 1, 0, -196496, 1, 0, -196495, 5, 0, -196486, 0, 0, -196485, 1, 0, -196484, 1, 0, -196483, 5, 0, -196475, 2, 0, -196474, 2, 0, -196473, 2, 0, -196472, 2, 0, -196471, 2, 0, -196470, 2, 0, -196469, 2, 0, -196468, 2, 0, -130967, 536870914, 0, -130966, 536870914, 0, -130965, 536870914, 0, -130964, 536870914, 0, -130963, 536870914, 0, -130962, 536870914, 0, -130961, 536870914, 0, -130960, 536870914, 0, -130959, 536870914, 0, -130958, 1, 0, -130957, 1, 0, -130956, 1, 0, -130955, 1, 0, -130954, 5, 0, -130951, 0, 0, -130950, 536870914, 0, -130949, 2, 0, -130948, 2, 0, -130947, 2, 0, -130939, 2, 0, -130938, 2, 0, -130937, 2, 0, -130936, 2, 0, -130935, 2, 0, -130934, 2, 0, -130933, 2, 0, -130932, 2, 0, -65431, 536870914, 0, -65430, 536870914, 0, -65429, 536870914, 0, -65428, 536870914, 0, -65427, 536870914, 0, -65426, 536870914, 0, -65425, 536870914, 0, -65424, 536870914, 0, -65423, 536870914, 0, -65422, 536870914, 0, -65421, 536870914, 0, -65420, 536870914, 0, -65419, 536870914, 0, -65418, 536870914, 0, -65415, 536870914, 0, -65414, 536870914, 0, -65413, 2, 0, -65412, 2, 0, -65411, 2, 0, -65410, 536870913, 0, -65409, 536870913, 0, -65408, 536870913, 0, -65407, 536870913, 0, -65406, 5, 0, -65403, 2, 0, -65402, 2, 0, -65401, 2, 0, -65400, 2, 0, -65399, 2, 0, -65398, 2, 0, -65397, 2, 0, -65396, 2, 0, 65535, 2, 0, 106, 536870914, 0, 107, 536870914, 0, 108, 536870914, 0, 109, 536870914, 0, 110, 536870914, 0, 111, 536870914, 0, 112, 536870914, 0, 113, 536870914, 0, 114, 536870914, 0, 115, 536870914, 0, 116, 536870914, 0, 117, 536870914, 0, 118, 536870914, 0, 121, 536870914, 0, 122, 536870914, 0, 123, 2, 0, 124, 2, 0, 125, 2, 0, 126, 2, 0, 127, 2, 0, 128, 2, 0, 129, 536870914, 0, 133, 2, 0, 134, 2, 0, 135, 2, 0, 136, 2, 0, 137, 2, 0, 138, 2, 0, 139, 2, 0, 140, 2, 0, 131071, 2, 0, 65641, 536870914, 0, 65642, 536870914, 0, 65643, 536870914, 0, 65644, 536870914, 0, 65645, 536870914, 0, 65646, 536870914, 0, 65647, 536870914, 0, 65651, 536870914, 0, 65652, 536870914, 0, 65653, 536870914, 0, 65654, 536870914, 0, 65657, 536870914, 0, 65658, 536870914, 0, 65659, 2, 0, 65660, 2, 0, 65661, 2, 0, 65662, 2, 0, 65663, 2, 0, 65664, 2, 0, 65665, 536870914, 0, 65669, 2, 0, 65670, 2, 0, 65671, 2, 0, 65672, 2, 0, 65673, 2, 0, 65674, 2, 0, 65675, 2, 0, 65676, 2, 0, 196607, 2, 0, 131162, 0, 0, 131163, 536870913, 0, 131164, 536870913, 0, 131165, 536870913, 0, 131166, 536870913, 0, 131167, 536870913, 0, 131168, 536870913, 0, 131169, 536870913, 0, 131170, 5, 0, 131177, 536870914, 0, 131178, 536870914, 0, 131179, 536870914, 0, 131180, 536870914, 0, 131181, 536870914, 0, 131189, 536870914, 0, 131190, 536870914, 0, 131193, 2, 0, 131194, 2, 0, 131198, 2, 0, 131199, 2, 0, 131200, 2, 0, 131201, 536870914, 0, 131205, 2, 0, 131206, 2, 0, 131207, 2, 0, 131210, 2, 0, 131211, 2, 0, 131212, 2, 0, 262143, 2, 0, 196692, 0, 0, 196693, 5, 0, 196698, 2, 0, 196699, 2, 0, 196700, 2, 0, 196701, 2, 0, 196702, 2, 0, 196703, 2, 0, 196704, 2, 0, 196705, 2, 0, 196706, 2, 0, 196713, 536870914, 0, 196714, 536870914, 0, 196715, 536870914, 0, 196725, 536870914, 0, 196726, 536870914, 0, 196729, 2, 0, 196730, 2, 0, 196735, 2, 0, 196736, 2, 0, 196737, 536870914, 0, 196741, 2, 0, 196742, 2, 0, 196747, 2, 0, 196748, 2, 0, 327679, 2, 0, 262224, 0, 0, 262225, 1, 0, 262226, 1, 0, 262227, 1, 0, 262228, 536870914, 0, 262229, 536870914, 0, 262234, 2, 0, 262235, 2, 0, 262236, 2, 0, 262237, 2, 0, 262241, 2, 0, 262242, 2, 0, 262243, 1, 0, 262244, 5, 0, 262249, 536870914, 0, 262250, 536870914, 0, 262261, 2, 0, 262262, 2, 0, 262272, 2, 0, 262273, 536870914, 0, 262277, 2, 0, 262284, 2, 0, 262285, 2, 0, 262286, 2, 0, 393215, 2, 0, 327698, 0, 0, 327699, 1, 0, 327700, 1, 0, 327701, 1, 0, 327702, 1, 0, 327703, 1, 0, 327704, 1, 0, 327705, 1, 0, 327706, 1, 0, 327707, 1, 0, 327708, 1, 0, 327709, 5, 0, 327740, 0, 0, 327741, 536870913, 0, 327742, 536870913, 0, 327743, 536870913, 0, 327744, 536870913, 0, 327745, 5, 0, 327753, 0, 0, 327754, 1, 0, 327755, 1, 0, 327756, 1, 0, 327757, 1, 0, 327758, 1, 0, 327759, 1, 0, 327760, 536870914, 0, 327761, 536870914, 0, 327762, 536870914, 0, 327763, 536870914, 0, 327764, 536870914, 0, 327765, 536870914, 0, 327778, 2, 0, 327779, 536870914, 0, 327780, 536870914, 0, 327781, 536870913, 0, 327782, 5, 0, 327808, 2, 0, 327809, 2, 0, 327810, 2, 0, 327822, 2, 0, 458751, 2, 0, 393231, 0, 0, 393232, 1, 0, 393233, 1, 0, 393234, 2, 0, 393235, 2, 0, 393236, 2, 0, 393237, 2, 0, 393238, 2, 0, 393239, 2, 0, 393240, 2, 0, 393241, 2, 0, 393242, 2, 0, 393243, 2, 0, 393244, 2, 0, 393245, 2, 0, 393253, 0, 0, 393254, 5, 0, 393267, 0, 0, 393268, 536870913, 0, 393269, 536870913, 0, 393270, 536870913, 0, 393271, 536870913, 0, 393272, 536870913, 0, 393273, 536870913, 0, 393274, 536870913, 0, 393275, 536870913, 0, 393276, 536870914, 0, 393277, 536870914, 0, 393278, 536870914, 0, 393279, 536870914, 0, 393280, 536870914, 0, 393281, 536870914, 0, 393286, 0, 0, 393287, 1, 0, 393288, 1, 0, 393289, 536870914, 0, 393290, 536870914, 0, 393291, 536870914, 0, 393292, 536870914, 0, 393293, 536870914, 0, 393294, 536870914, 0, 393295, 536870914, 0, 393296, 536870914, 0, 393297, 536870914, 0, 393298, 536870914, 0, 393299, 536870914, 0, 393300, 536870914, 0, 393301, 536870914, 0, 393314, 2, 0, 393315, 536870914, 0, 393316, 536870914, 0, 393317, 536870914, 0, 393318, 536870914, 0, 393345, 2, 0, 393346, 2, 0, 393358, 2, 0, 524287, 2, 0, 458752, 0, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 2, 0, 458768, 2, 0, 458769, 2, 0, 458770, 2, 0, 458771, 2, 0, 458772, 2, 0, 458773, 2, 0, 458774, 2, 0, 458775, 2, 0, 458776, 2, 0, 458777, 2, 0, 458778, 2, 0, 458779, 2, 0, 458780, 2, 0, 458781, 2, 0, 458782, 1, 0, 458783, 1, 0, 458784, 1, 0, 458785, 5, 0, 458789, 2, 0, 458790, 2, 0, 458791, 536870913, 0, 458792, 536870913, 0, 458793, 536870913, 0, 458794, 536870913, 0, 458795, 536870913, 0, 458796, 536870913, 0, 458797, 536870913, 0, 458798, 536870913, 0, 458799, 5, 0, 458803, 536870914, 0, 458804, 536870914, 0, 458805, 536870914, 0, 458806, 536870914, 0, 458807, 536870914, 0, 458808, 536870914, 0, 458809, 536870914, 0, 458810, 536870914, 0, 458811, 536870914, 0, 458812, 536870914, 0, 458813, 536870914, 0, 458814, 536870914, 0, 458815, 536870914, 0, 458816, 536870914, 0, 458817, 536870914, 0, 458822, 536870914, 0, 458823, 536870914, 0, 458824, 536870914, 0, 458825, 536870914, 0, 458826, 536870914, 0, 458827, 536870914, 0, 458828, 536870914, 0, 458829, 536870914, 0, 458830, 536870914, 0, 458831, 536870914, 0, 458832, 536870914, 0, 458833, 536870914, 0, 458834, 536870914, 0, 458835, 536870914, 0, 458836, 536870914, 0, 458837, 536870914, 0, 458842, 0, 0, 458843, 1, 0, 458844, 1, 0, 458845, 1, 0, 458846, 1, 0, 458847, 1, 0, 458848, 1, 0, 458849, 1, 0, 458850, 2, 0, 458851, 536870914, 0, 458852, 536870914, 0, 458853, 536870914, 0, 458854, 536870914, 0, 458855, 536870913, 0, 458856, 536870913, 0, 458857, 536870913, 0, 458858, 536870913, 0, 458859, 536870913, 0, 458860, 536870913, 0, 458861, 536870913, 0, 458862, 536870913, 0, 458863, 536870913, 0, 458864, 536870913, 0, 458865, 536870913, 0, 458866, 536870913, 0, 458867, 1, 0, 458868, 1, 0, 458869, 1, 0, 458870, 1, 0, 458871, 1, 0, 458872, 536870913, 0, 458873, 536870913, 0, 458874, 536870913, 0, 458875, 536870913, 0, 458876, 536870913, 0, 458877, 5, 0, 458881, 2, 0, 458882, 2, 0, 458885, 0, 0, 458886, 1, 0, 458887, 1, 0, 458888, 1, 0, 458889, 1, 0, 458890, 1, 0, 458891, 1, 0, 458892, 1, 0, 458893, 2, 0, 458894, 2, 0, 524413, 2, 0, 524417, 2, 0, 524418, 2, 0, 524419, 2, 0, 524420, 2, 0, 524421, 2, 0, 524422, 2, 0, 524423, 2, 0, 524424, 2, 0, 524425, 2, 0, 524426, 2, 0, 524427, 2, 0, 524428, 2, 0, 589949, 2, 0, 589950, 2, 0, 589951, 2, 0, 589952, 2, 0, 589953, 2, 0, 589954, 2, 0, 589955, 2, 0, 589956, 2, 0, 589957, 2, 0, 589958, 2, 0, 589959, 2, 0, 589960, 2, 0, 589961, 2, 0, 589962, 2, 0, 589963, 2, 0, 589964, 2, 0 )
+script = ExtResource( 7 )
+
+[node name="StaticBlocks" type="Node" parent="Area2D"]
+
+[node name="Spikes" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 2260, 504 )
+scale = Vector2( 1.48571, 1 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes/Spike"]
+visible = false
+position = Vector2( 2.33325, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes13" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 8582, 504 )
+scale = Vector2( 1.88569, 1 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes13"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes13/Spike"]
+visible = false
+position = Vector2( 2.33301, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes2" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 2358.75, 504 )
+scale = Vector2( 1.33571, 1 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes2/Spike"]
+visible = false
+position = Vector2( 2.33313, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes3" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 3172, 505.5 )
+scale = Vector2( 1.48571, 1 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes3"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes3/Spike"]
+visible = false
+position = Vector2( 2.33325, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes4" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 3270.75, 505.5 )
+scale = Vector2( 1.33571, 1 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes4"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes4/Spike"]
+visible = false
+position = Vector2( 2.33325, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes5" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 4384, 504 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes5"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes5/Spike"]
+visible = false
+position = Vector2( 2.33301, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes6" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 4520, 504 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes6"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes6/Spike"]
+visible = false
+position = Vector2( 2.33301, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes7" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 4320, 504 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes7"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes7/Spike"]
+visible = false
+position = Vector2( 2.33301, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes8" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 4453.5, 504 )
+scale = Vector2( 1.07143, 1 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes8"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes8/Spike"]
+visible = false
+position = Vector2( 2.3335, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes9" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 5683, 505.5 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes9"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes9/Spike"]
+visible = false
+position = Vector2( 2.33301, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes10" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 5819, 505.5 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes10"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes10/Spike"]
+visible = false
+position = Vector2( 2.33301, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes11" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 5619, 505.5 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes11"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes11/Spike"]
+visible = false
+position = Vector2( 2.33301, 0 )
+shape = SubResource( 1 )
+
+[node name="Spikes12" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 5752.5, 505.5 )
+scale = Vector2( 1.07143, 1 )
+texture = ExtResource( 14 )
+
+[node name="Spike" type="StaticBody2D" parent="Area2D/StaticBlocks/Spikes12"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Spikes12/Spike"]
+visible = false
+position = Vector2( 2.3335, 0 )
+shape = SubResource( 1 )
+
+[node name="Barrier" type="Sprite" parent="Area2D/StaticBlocks"]
+position = Vector2( 6848, 391 )
+scale = Vector2( 0.657143, 1.88571 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Barrier" type="StaticBody2D" parent="Area2D/StaticBlocks/Barrier"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Barrier/Barrier"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Area2D/StaticBlocks/Barrier"]
+occluder = SubResource( 3 )
+
+[node name="Key" type="Area2D" parent="Area2D/StaticBlocks"]
+position = Vector2( 6208, 312 )
+script = ExtResource( 1 )
+
+[node name="Key" type="Sprite" parent="Area2D/StaticBlocks/Key"]
+material = SubResource( 10 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Key"]
+visible = false
+shape = SubResource( 4 )
+
+[node name="Coin" type="Node2D" parent="Area2D/StaticBlocks"]
+
+[node name="Coin" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 1440, 136 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin2" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 1600, 136 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin2"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin2"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin2"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin3" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 1752, 136 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin3"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin3"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin3"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin4" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 2295, 240 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin4"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin4"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin4"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin5" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 3136, 304 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin5"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin5"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin5"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin6" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 3232, 240 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin6"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin6"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin6"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin7" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 3800, 192 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin7"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin7"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin7"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin8" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 3992, 128 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin8"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin8"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin8"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin9" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 4160, 120 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin9"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin9"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin9"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin10" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 4504, 232 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin10"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin10"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin10"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin11" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 4904, 160 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin11"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin11"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin11"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin12" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 5056, 160 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin12"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin12"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin12"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin13" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 5672, 40 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin13"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin13"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin13"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin14" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 5792, 24 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin14"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin14"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin14"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin15" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 5960, 360 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin15"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin15"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin15"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin16" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 6336, 360 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin16"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin16"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin16"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin17" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 7120, 272 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin17"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin17"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin17"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin18" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 7224, 240 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin18"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin18"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin18"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin19" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 7336, 216 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin19"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin19"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin19"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin20" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 7432, 240 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin20"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin20"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin20"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin21" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 7512, 272 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin21"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin21"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin21"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin22" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 8096, 264 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin22"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin22"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin22"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin23" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 8200, 264 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin23"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin23"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin23"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin24" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 7288, -312 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin24"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin24"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin24"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin26" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 8072, -352 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin26"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin26"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin26"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin27" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 8584, 448 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin27"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin27"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin27"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin28" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 8480, 48 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin28"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin28"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin28"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin29" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 8848, 232 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin29"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin29"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin29"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin30" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 8912, 232 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin30"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin30"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin30"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin31" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 8976, 232 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin31"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin31"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin31"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Coin25" type="Area2D" parent="Area2D/StaticBlocks/Coin"]
+position = Vector2( 7400, -312 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin25"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBlocks/Coin/Coin25"]
+shape = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D/StaticBlocks/Coin/Coin25"]
+material = SubResource( 9 )
+texture = ExtResource( 6 )
+
+[node name="Player" parent="Area2D" instance=ExtResource( 2 )]
+
+[node name="Player" parent="Area2D/Player" index="0"]
+position = Vector2( 50, 367 )
+
+[node name="StartPoint" type="Node2D" parent="Area2D"]
+position = Vector2( 50, 365 )
+
+[node name="GM" type="Node2D" parent="."]
+script = ExtResource( 21 )
+daylight_gradient = SubResource( 6 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 7 )
+
+[node name="Enemies" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="Enemies"]
+position = Vector2( 1571, 201 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Slime" parent="Enemies/Area2D" instance=ExtResource( 24 )]
+roam = 300
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D"]
+shape = SubResource( 8 )
+
+[node name="Area2D2" type="Area2D" parent="Enemies"]
+position = Vector2( 2793, 282 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Slime" parent="Enemies/Area2D2" instance=ExtResource( 24 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D2"]
+shape = SubResource( 8 )
+
+[node name="Area2D3" type="Area2D" parent="Enemies"]
+position = Vector2( 3652, 233 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Slime" parent="Enemies/Area2D3" instance=ExtResource( 24 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D3"]
+shape = SubResource( 8 )
+
+[node name="Area2D4" type="Area2D" parent="Enemies"]
+position = Vector2( 4985, 204 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Slime" parent="Enemies/Area2D4" instance=ExtResource( 24 )]
+roam = 150
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D4"]
+shape = SubResource( 8 )
+
+[node name="Area2D5" type="Area2D" parent="Enemies"]
+position = Vector2( 6154, 389 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Slime" parent="Enemies/Area2D5" instance=ExtResource( 24 )]
+roam = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D5"]
+shape = SubResource( 8 )
+
+[node name="Area2D6" type="Area2D" parent="Enemies"]
+position = Vector2( 7244, 378 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Slime" parent="Enemies/Area2D6" instance=ExtResource( 24 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D6"]
+shape = SubResource( 8 )
+
+[node name="Area2D7" type="Area2D" parent="Enemies"]
+position = Vector2( 7714, 399 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Slime" parent="Enemies/Area2D7" instance=ExtResource( 24 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D7"]
+shape = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -10.0
+autoplay = true
+
+[connection signal="body_entered" from="Area2D/StaticBlocks/Key" to="Area2D/StaticBlocks/Key" method="_on_Key_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Key" to="Area2D/Player/Player" method="_on_Key_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin" to="Area2D/StaticBlocks/Coin/Coin" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin2" to="Area2D/StaticBlocks/Coin/Coin2" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin2" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin3" to="Area2D/StaticBlocks/Coin/Coin3" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin3" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin4" to="Area2D/StaticBlocks/Coin/Coin4" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin4" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin5" to="Area2D/StaticBlocks/Coin/Coin5" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin5" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin6" to="Area2D/StaticBlocks/Coin/Coin6" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin6" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin7" to="Area2D/StaticBlocks/Coin/Coin7" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin7" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin8" to="Area2D/StaticBlocks/Coin/Coin8" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin8" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin9" to="Area2D/StaticBlocks/Coin/Coin9" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin9" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin10" to="Area2D/StaticBlocks/Coin/Coin10" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin10" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin11" to="Area2D/StaticBlocks/Coin/Coin11" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin11" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin12" to="Area2D/StaticBlocks/Coin/Coin12" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin12" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin13" to="Area2D/StaticBlocks/Coin/Coin13" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin13" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin14" to="Area2D/StaticBlocks/Coin/Coin14" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin14" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin15" to="Area2D/StaticBlocks/Coin/Coin15" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin15" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin16" to="Area2D/StaticBlocks/Coin/Coin16" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin16" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin17" to="Area2D/StaticBlocks/Coin/Coin17" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin17" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin18" to="Area2D/StaticBlocks/Coin/Coin18" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin18" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin19" to="Area2D/StaticBlocks/Coin/Coin19" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin19" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin20" to="Area2D/StaticBlocks/Coin/Coin20" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin20" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin21" to="Area2D/StaticBlocks/Coin/Coin21" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin21" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin22" to="Area2D/StaticBlocks/Coin/Coin22" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin22" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin23" to="Area2D/StaticBlocks/Coin/Coin23" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin23" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin24" to="Area2D/StaticBlocks/Coin/Coin24" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin24" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin26" to="Area2D/StaticBlocks/Coin/Coin26" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin26" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin27" to="Area2D/StaticBlocks/Coin/Coin27" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin27" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin28" to="Area2D/StaticBlocks/Coin/Coin28" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin28" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin29" to="Area2D/StaticBlocks/Coin/Coin29" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin29" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin30" to="Area2D/StaticBlocks/Coin/Coin30" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin30" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin31" to="Area2D/StaticBlocks/Coin/Coin31" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin31" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin25" to="Area2D/StaticBlocks/Coin/Coin25" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Area2D/StaticBlocks/Coin/Coin25" to="Area2D/Player/Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Enemies/Area2D" to="Enemies/Area2D/Slime" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Enemies/Area2D2" to="Enemies/Area2D2/Slime" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Enemies/Area2D3" to="Enemies/Area2D3/Slime" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Enemies/Area2D4" to="Enemies/Area2D4/Slime" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Enemies/Area2D5" to="Enemies/Area2D5/Slime" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Enemies/Area2D6" to="Enemies/Area2D6/Slime" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Enemies/Area2D7" to="Enemies/Area2D7/Slime" method="_on_Area2D_body_entered"]
+
+[editable path="Area2D/Player"]
+[editable path="Enemies/Area2D/Slime"]

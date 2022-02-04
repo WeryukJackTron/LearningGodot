@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/futuristic-rhythmic-game-ambience.wav-f1108d5c9a2730a8f6e9d01a61a2f929.sample"
+
+[deps]
+
+source_file="res://Sounds/Background/futuristic-rhythmic-game-ambience.wav"
+dest_files=[ "res://.import/futuristic-rhythmic-game-ambience.wav-f1108d5c9a2730a8f6e9d01a61a2f929.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

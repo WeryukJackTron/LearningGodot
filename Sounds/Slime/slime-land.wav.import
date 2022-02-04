@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/slime-land.wav-ce1d4a783ce1796c98b6bcd73ac1223a.sample"
+
+[deps]
+
+source_file="res://Sounds/Slime/slime-land.wav"
+dest_files=[ "res://.import/slime-land.wav-ce1d4a783ce1796c98b6bcd73ac1223a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
